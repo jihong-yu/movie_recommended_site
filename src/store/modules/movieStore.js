@@ -98,11 +98,25 @@ export default {
     
     fetchHomePageMovisLoading({dispatch,getters,commit}){
       dispatch('fetchVoteAverageMovies')
-      dispatch('fetchPopularity_movies')
-      dispatch('fetchAudultMovies')
-      dispatch('fetchLike_order_movies')
-      dispatch('fetchRelease_order_movies')
-      dispatch('fetchPick_order_movies')
+      .then(()=>{
+        dispatch('fetchPopularity_movies')
+        
+      })
+      .then(()=>{
+        dispatch('fetchAudultMovies')
+        
+      })
+      .then(()=>{
+        dispatch('fetchLike_order_movies')
+        
+      })
+      .then(()=>{
+        dispatch('fetchRelease_order_movies')
+        
+      }).then(()=>{
+        dispatch('fetchPick_order_movies')
+        
+      })
       .then(()=> {
         if(getters.getReturnPageInfo){
           console.log('페이지이동')
