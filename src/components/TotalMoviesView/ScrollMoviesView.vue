@@ -204,7 +204,7 @@ export default {
     },
   },
   created(){
-    console.log('여기통과?')
+    //console.log('여기통과?')
     this.$store.dispatch('fetchAllMovies')
     .then(()=>{
       
