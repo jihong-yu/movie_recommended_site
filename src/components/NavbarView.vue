@@ -104,7 +104,11 @@ export default {
       if(this.isActive === '/total-review'){
         this.$store.dispatch('fetchSelectedUsers',[])
       } else if(this.isActive === '/my-page'){
+        event.preventdefault()
         this.$store.dispatch('fetchProfile',this.getCurrentUser.username)
+        .then(
+          this.$router.push({name:'my_page'})
+        )
       } else if(this.isActive === '/logout'){
         if (this.getIsLoggedIn) {
           this.logout()
