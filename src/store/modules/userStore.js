@@ -166,30 +166,20 @@ export default {
           commit('SET_CURRENT_USER', res.data)
           dispatch('fetchAllMovies')
           dispatch('fetchHomePageMovisLoading')
+          
       })
-      .then(()=> {
-        if(getters.getReturnPageInfo){
-          router.push({ name: getters.getReturnPageInfo })
-          commit('SET_RETURN_PAGE_INFO','')
-        } else {
-          router.push('/')
+      .catch (err => {
+        //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
+        if(err.response.status === 401){
+          dispatch('removeToken')
+          router.push({name: 'login'})
         }
       })
-        .catch (err => {
-          //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
-          if(err.response.status === 401){
-            dispatch('removeToken')
-            router.push({name: 'login'})
-          }
-        })
       }
     },
     
-     
-    
-
     //로그인 처리
-    login({commit,dispatch,getters},login_info){
+    login({commit,dispatch},login_info){
       
       //비동기 통신으로 서버에 보낸다.
       axios({
