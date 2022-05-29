@@ -189,9 +189,14 @@ export default {
         const token = res.data.key 
         
         dispatch('saveToken',token) //토큰 저장
+        console.log('1')
+      })
+      .then(()=> {
+        console.log('2')
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
       })
       .then(() => {
+        console.log('3')
         dispatch('fetchAllMovies')
         dispatch('fetchHomePageMovisLoading')
       })
