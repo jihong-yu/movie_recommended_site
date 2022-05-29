@@ -167,6 +167,14 @@ export default {
           dispatch('fetchAllMovies')
           dispatch('fetchHomePageMovisLoading')
       })
+      .then(()=> {
+        if(getters.getReturnPageInfo){
+          router.push({ name: getters.getReturnPageInfo })
+          commit('SET_RETURN_PAGE_INFO','')
+        } else {
+          router.push('/')
+        }
+      })
         .catch (err => {
           //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
           if(err.response.status === 401){
@@ -197,14 +205,7 @@ export default {
       .then(()=> {
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
       })
-      .then(() => {
-        if(getters.getReturnPageInfo){
-          router.push({ name: getters.getReturnPageInfo })
-          commit('SET_RETURN_PAGE_INFO','')
-        } else {
-          router.push('/')
-        }
-      })
+      
       .catch(err => {
         //console.log(err.response.data)
         alert(err.respone.data)
