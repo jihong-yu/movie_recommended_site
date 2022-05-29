@@ -52,7 +52,7 @@
           </li>
 
           <li class="nav-item d-none d-lg-block " v-if="getIsLoggedIn">
-              <a class="text-decoration-none"><span @click="isClicked" class="nav-link mx-3" :class="{'active': isActive === '/my-page'}">마이페이지</span></a>
+              <router-link to="" class="text-decoration-none"><span @click="isClicked" class="nav-link mx-3" :class="{'active': isActive === '/my-page'}">마이페이지</span></router-link>
           </li>
           <li class="nav-item d-none d-lg-block" v-if="getCurrentUser.username === 'admin' && getIsLoggedIn">
            <div class="d-flex"><a class="text-decoration-none d-flex align-items-center " href="http://127.0.0.1:8000/admin/"><span class="d-block">관리자 페이지</span></a></div>
