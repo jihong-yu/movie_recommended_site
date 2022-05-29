@@ -24,8 +24,8 @@
       </vs-switch>
     </div>
     <hr>
-      <scroll-movies-view v-if="isScrollView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
-      <page-movies-view v-if="isPageView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
+      <scroll-movies-view v-show="isScrollView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
+      <page-movies-view v-show="isPageView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
     
   </div>
 </template>
