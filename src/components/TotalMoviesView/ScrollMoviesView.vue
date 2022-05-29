@@ -206,10 +206,13 @@ export default {
   created(){
     if(!this.$store.getters.getAllMovies.length){
       this.$store.dispatch('fetchAllMovies')
+      .then(()=>{
+        this.movies = this.$store.getters.getAllMovies
+        this.all_movies = this.$store.getters.getAllMovies
+      })
     }
-
-      this.movies = this.$store.getters.getAllMovies
-      this.all_movies = this.$store.getters.getAllMovies
+    
+      
   },
   mounted(){
     document.addEventListener('scroll',this.infiniteHandler)
