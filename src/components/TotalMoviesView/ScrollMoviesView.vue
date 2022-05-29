@@ -207,6 +207,7 @@ export default {
     if(!this.$store.getters.getAllMovies.length){
       this.$store.dispatch('fetchAllMovies')
       .then(()=>{
+        console.log('여기통과?')
         this.movies = this.$store.getters.getAllMovies
         this.all_movies = this.$store.getters.getAllMovies
       })
