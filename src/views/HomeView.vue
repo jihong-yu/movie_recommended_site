@@ -92,7 +92,7 @@ export default {
   },
   created(){
     
-      this.fetchHomePageMovisLoading()
+      //this.fetchHomePageMovisLoading()
     
   }
 }

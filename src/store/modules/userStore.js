@@ -190,6 +190,11 @@ export default {
         
         dispatch('saveToken',token) //토큰 저장
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
+        dispatch('fetchAllMovies')
+        dispatch('fetchHomePageMovisLoading')
+        
+      })
+      .then(() => {
         if(getters.getReturnPageInfo){
           router.push({ name: getters.getReturnPageInfo })
           commit('SET_RETURN_PAGE_INFO','')
