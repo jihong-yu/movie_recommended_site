@@ -102,7 +102,7 @@ export default {
         data : data
       })
       .then(res => {
-        console.log(res.data)
+        //console.log(res.data)
         commit('SET_SELECTEDREVIEWS',res.data)
         dispatch('fetchAllReviews')
       })

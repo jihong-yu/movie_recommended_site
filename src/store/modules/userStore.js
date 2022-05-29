@@ -263,7 +263,7 @@ export default {
     //프로필 정보 수정
     updateFrofile({commit, getters, dispatch}, name){
 
-      console.log(getters.getCurrentUser)
+      //console.log(getters.getCurrentUser)
       //front에서 user_id, 변경된이름
       //현재 유저 
       const data = {

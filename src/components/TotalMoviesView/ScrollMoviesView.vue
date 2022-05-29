@@ -103,7 +103,7 @@ export default {
             this.isEnd = true
           },300)
         }
-        console.log('여기2')
+        //console.log('여기2')
       }else{
         this.isLoding = false
         this.isEnd = true
