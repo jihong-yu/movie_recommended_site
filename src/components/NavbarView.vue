@@ -107,7 +107,7 @@ export default {
         //event.preventdefault()
         this.$store.dispatch('fetchProfile',this.getCurrentUser.username)
         .then(
-          this.$router.push({name :'my_page', params : {username : getCurrentUser.username} })
+          this.$router.push({name :'my_page', params : {username : this.getCurrentUser.username} })
         )
       } else if(this.isActive === '/logout'){
         if (this.getIsLoggedIn) {
