@@ -162,7 +162,11 @@ export default {
           method : 'get',
           headers : getters.getAuthHeader,
         })
-        .then (res => commit('SET_CURRENT_USER', res.data))
+        .then (res => {
+          commit('SET_CURRENT_USER', res.data)
+          dispatch('fetchAllMovies')
+          dispatch('fetchHomePageMovisLoading')
+      })
         .catch (err => {
           //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
           if(err.response.status === 401){
@@ -189,16 +193,9 @@ export default {
         const token = res.data.key 
         
         dispatch('saveToken',token) //토큰 저장
-        console.log('1')
       })
       .then(()=> {
-        console.log('2')
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
-      })
-      .then(() => {
-        console.log('3')
-        dispatch('fetchAllMovies')
-        dispatch('fetchHomePageMovisLoading')
       })
       .then(() => {
         if(getters.getReturnPageInfo){
