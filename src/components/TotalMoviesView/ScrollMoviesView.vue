@@ -204,15 +204,13 @@ export default {
     },
   },
   created(){
-    if(!this.$store.getters.getAllMovies.length){
-      this.$store.dispatch('fetchAllMovies')
-      .then(()=>{
-        console.log('여기통과?')
-        this.movies = this.$store.getters.getAllMovies
-        this.all_movies = this.$store.getters.getAllMovies
-      })
-    }
-    
+    console.log('여기통과?')
+    this.$store.dispatch('fetchAllMovies')
+    .then(()=>{
+      
+      this.movies = this.$store.getters.getAllMovies
+      this.all_movies = this.$store.getters.getAllMovies
+    })
       
   },
   mounted(){
