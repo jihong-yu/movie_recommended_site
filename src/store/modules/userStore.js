@@ -77,7 +77,6 @@ export default {
 
     fetchLikedTendency({commit,getters},like_movies){
       
-      
       const labels = [
         '액션', '모험', '애니메이션', '코미디', '범죄', '다큐멘터리', '드라마','가족', 
         '판타지', '역사', '공포', '음악', '미스터리', '로맨스', 'SF', 'TV 영화', '스릴러', '전쟁', '서부'
@@ -192,8 +191,10 @@ export default {
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
         dispatch('fetchAllMovies')
         dispatch('fetchHomePageMovisLoading')
+        
       })
       .then (() => {
+        dispatch('fetchProfile',getters.getCurrentUser.username)
         if(getters.getReturnPageInfo){
           router.push({ name: getters.getReturnPageInfo })
           commit('SET_RETURN_PAGE_INFO','')
@@ -255,9 +256,9 @@ export default {
       })
       .then(res => {
         commit('SET_PROFILE',res.data)
-        
         dispatch('fetchLikedTendency',res.data.like_movies)
         dispatch('fetchFollowingsInfo',res.data.username)
+        
       })
       .catch(err => {
         console.log(err)
