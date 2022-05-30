@@ -240,7 +240,7 @@ export default {
       headers : getters.getAuthHeader
     })
     .then(res => {
-      //console.log(res.data)
+      console.log('여기는 fetch무비')
       commit('SET_ALLMOVIES',res.data)
     })
     .catch(err => {console.log(err)})

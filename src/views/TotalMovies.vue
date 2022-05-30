@@ -24,7 +24,7 @@
       </vs-switch>
     </div>
     <hr>
-      <scroll-movies-view v-if="isScrollView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
+      <scroll-movies-view v-if="isScrollView" :searchText="getSearchText" :selectedGenres="selectedGenres" :allMovies="getAllMovies2"/>
       <page-movies-view v-if="isPageView" :searchText="getSearchText" :selectedGenres="selectedGenres"/>
     
   </div>
@@ -58,6 +58,7 @@ export default {
       searchText:'',
       genres : [],
       selectedGenres : [],
+      allMovies : [],
       active : 2,
     }
   },
@@ -68,6 +69,9 @@ export default {
     getGenres(){
       //console.log(_.size(this.genres))
       return _.size(this.genres)
+    },
+    getAllMovies2(){
+      return this.$store.getters.getAllMovies
     }
   },
   methods : {
@@ -122,6 +126,7 @@ export default {
     //console.log(this.$store.getters.getAllMovies.length)
     if (!this.$store.getters.getAllMovies.length){
       this.$store.dispatch('fetchAllMovies')
+
     }
   }
 }

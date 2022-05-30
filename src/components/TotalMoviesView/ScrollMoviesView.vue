@@ -38,8 +38,8 @@ export default {
   name:'ScrollMoviesView',
   data(){
     return {
-      all_movies : [],
-      movies : [],
+      all_movies : this.$store.getters.getAllMovies,
+      movies : this.$store.getters.getAllMovies,
       searched_movies : [],
       limit: 20,
       isLoading:false,
@@ -51,6 +51,7 @@ export default {
   props : {
     searchText : String,
     selectedGenres : Array,
+    allMovies : Array,
   },
   computed : {
     getMovieImg(){
@@ -111,6 +112,9 @@ export default {
     },
   },
   watch : {
+      allMovies(){
+        this.movies = this.allMovies
+      },
       searchText() {
         //console.log(this.selectedGenres)
         if(this.searchText === '' && !this.selectedGenres.length){
@@ -206,10 +210,11 @@ export default {
   created(){
     
     this.$store.dispatch('fetchAllMovies')
-    
-
+    .then(() => {
       this.movies = this.$store.getters.getAllMovies
       this.all_movies = this.$store.getters.getAllMovies
+    })
+      
   },
   mounted(){
     document.addEventListener('scroll',this.infiniteHandler)

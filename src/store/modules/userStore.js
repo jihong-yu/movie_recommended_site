@@ -189,9 +189,10 @@ export default {
         
         dispatch('saveToken',token) //토큰 저장
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
+      })
+      .then(()=>{
         dispatch('fetchAllMovies')
         dispatch('fetchHomePageMovisLoading')
-        
       })
       .then (() => {
         dispatch('fetchProfile',getters.getCurrentUser.username)
