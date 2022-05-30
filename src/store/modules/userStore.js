@@ -195,7 +195,7 @@ export default {
         dispatch('fetchHomePageMovisLoading')
       })
       .then (() => {
-        dispatch('fetchProfile',getters.getCurrentUser.username)
+        //dispatch('fetchProfile',getters.getCurrentUser.username)
         if(getters.getReturnPageInfo){
           router.push({ name: getters.getReturnPageInfo })
           commit('SET_RETURN_PAGE_INFO','')
