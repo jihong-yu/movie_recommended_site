@@ -199,9 +199,9 @@ export default {
   },
   created(){
     
-    if(!this.$store.getters.getAllMovies.length){
-      this.$store.dispatch('fetchAllMovies')
-    }
+    
+    this.$store.dispatch('fetchAllMovies')
+    
     
     this.movies = this.$store.getters.getAllMovies
     this.all_movies = this.$store.getters.getAllMovies
