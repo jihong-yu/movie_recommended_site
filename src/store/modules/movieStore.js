@@ -1,4 +1,4 @@
-import router from "@/router"
+
 import drf from "@/api/drf";
 import axios from "axios"
 
@@ -96,37 +96,13 @@ export default {
   actions: {
     
     
-    fetchHomePageMovisLoading({dispatch,getters,commit}){
+    fetchHomePageMovisLoading({dispatch}){
       dispatch('fetchVoteAverageMovies')
-      .then(()=>{
-        dispatch('fetchPopularity_movies')
-        
-      })
-      .then(()=>{
-        dispatch('fetchAudultMovies')
-        
-      })
-      .then(()=>{
-        dispatch('fetchLike_order_movies')
-        
-      })
-      .then(()=>{
-        dispatch('fetchRelease_order_movies')
-        
-      }).then(()=>{
-        dispatch('fetchPick_order_movies')
-        
-      })
-      .then(()=> {
-        if(getters.getReturnPageInfo){
-          console.log('페이지이동')
-          router.push({ name: getters.getReturnPageInfo })
-          commit('SET_RETURN_PAGE_INFO','')
-        } else {
-          console.log('페이지이동')
-          router.push('/')
-        }
-      })
+      dispatch('fetchPopularity_movies')
+      dispatch('fetchAudultMovies')
+      dispatch('fetchLike_order_movies')
+      dispatch('fetchRelease_order_movies')
+      dispatch('fetchPick_order_movies')
     },
     
   
@@ -150,7 +126,7 @@ export default {
         headers : getters.getAuthHeader
       })
       .then(res => {
-        console.log('이게마지막')
+        
         commit('SET_PICK_ORDER_MOVIES',res.data)
       })
       .catch(err => console.log(err))

@@ -75,7 +75,7 @@ export default {
       .catch(err => console.log(err))
     },
 
-    fetchLikedTendency({commit},like_movies){
+    fetchLikedTendency({commit,getters},like_movies){
       
       
       const labels = [
@@ -135,7 +135,7 @@ export default {
 
       commit('SET_LIKEDTENDENCY', sendData)
       //console.log(getters.getProfile)
-      //router.push({name:'my_page',params:{username: getters.getProfile.username}, query : {tendency:this.getLikedTendency}})
+      router.push({name:'my_page',params:{username: getters.getProfile.username}, query : {tendency:this.getLikedTendency}})
 
     },
 
@@ -162,24 +162,22 @@ export default {
           method : 'get',
           headers : getters.getAuthHeader,
         })
-        .then (res => {
-          commit('SET_CURRENT_USER', res.data)
-          dispatch('fetchAllMovies')
-          dispatch('fetchHomePageMovisLoading')
-          
-      })
-      .catch (err => {
-        //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
-        if(err.response.status === 401){
-          dispatch('removeToken')
-          router.push({name: 'login'})
-        }
-      })
+        .then (res => commit('SET_CURRENT_USER', res.data))
+        .catch (err => {
+          //401에러 -> 서버가 누군지 모른다.(즉, 잘못된 토큰)
+          if(err.response.status === 401){
+            dispatch('removeToken')
+            router.push({name: 'login'})
+          }
+        })
       }
     },
     
+     
+    
+
     //로그인 처리
-    login({commit,dispatch},login_info){
+    login({commit,dispatch,getters},login_info){
       
       //비동기 통신으로 서버에 보낸다.
       axios({
@@ -191,11 +189,18 @@ export default {
         const token = res.data.key 
         
         dispatch('saveToken',token) //토큰 저장
-      })
-      .then(()=> {
         dispatch('fetchCurrentUser') // 현재 유저정보를 업데이트
+        dispatch('fetchAllMovies')
+        dispatch('fetchHomePageMovisLoading')
       })
-      
+      .then (() => {
+        if(getters.getReturnPageInfo){
+          router.push({ name: getters.getReturnPageInfo })
+          commit('SET_RETURN_PAGE_INFO','')
+        } else {
+          router.push('/')
+        }
+      })
       .catch(err => {
         //console.log(err.response.data)
         alert(err.respone.data)

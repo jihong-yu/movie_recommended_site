@@ -261,6 +261,7 @@ export default {
       myFollowModal : false,
     }
   },
+  
   updated() {
       this.myChart.data.datasets[0].data = this.getLikedTendency.data
       this.myChart.update()
@@ -427,7 +428,7 @@ export default {
     //this.$store.dispatch('fetchProfile')
   },
   mounted(){
-    //console.log('여기는 마운티드',this.getLikedTendency.data)
+    console.log('여기는 마운티드',this.getLikedTendency.data)
     this.fillData(this.getLikedTendency.data);
     this.$store.dispatch('fetchFollowingsInfo',this.getProfile.username)
   },

@@ -204,14 +204,12 @@ export default {
     },
   },
   created(){
-    //console.log('여기통과?')
-    this.$store.dispatch('fetchAllMovies')
-    .then(()=>{
-      
+    if(!this.$store.getters.getAllMovies.length){
+      this.$store.dispatch('fetchAllMovies')
+    }
+
       this.movies = this.$store.getters.getAllMovies
       this.all_movies = this.$store.getters.getAllMovies
-    })
-      
   },
   mounted(){
     document.addEventListener('scroll',this.infiniteHandler)

@@ -23,7 +23,7 @@ export default {
   },
   created(){
     // 전체영화 목록 가져오기
-    this.$store.dispatch('fetchAllMovies')
+    //this.$store.dispatch('fetchAllMovies')
     //console.log(this.$store.getters.getCurrentUser)
     //현재 유저 방문횟수 업데이트
     if(this.$store.getters.getCurrentUser.username){
